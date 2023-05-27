@@ -1,0 +1,29 @@
+package com.example.springboot.db;
+
+import java.util.ArrayList;
+
+public class DBManager {
+    private static ArrayList<Student> st = new ArrayList<>();
+    private static Long id = 4L;
+    static{
+        st.add(new Student(1L, "Student1", "Surname1", 78, "B"));
+        st.add(new Student(2L, "Student2", "Surname2", 91, "A"));
+        st.add(new Student(3L, "Student3", "Surname3", 43, "F"));
+    }
+
+    public static ArrayList<Student> getSt(){
+        return st;
+    }
+
+    public static void addSt(Student student){
+        student.setId(id);
+        id++;
+        if(student.getExam_score() < 50) student.setMark("F");
+        else if(student.getExam_score() >= 50 && student.getExam_score() <= 59) student.setMark("D");
+        else if(student.getExam_score() >= 60 && student.getExam_score() <= 74) student.setMark("C");
+        else if(student.getExam_score() >= 75 && student.getExam_score() <= 89) student.setMark("B");
+        else student.setMark("A");
+
+        st.add(student);
+    }
+}
